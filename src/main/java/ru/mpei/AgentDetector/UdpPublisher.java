@@ -3,7 +3,7 @@ package ru.mpei.AgentDetector;
 import java.io.IOException;
 import java.net.*;
 
-public class Publisher {
+public class UdpPublisher {
 
     private DatagramSocket socket;
     private int port;

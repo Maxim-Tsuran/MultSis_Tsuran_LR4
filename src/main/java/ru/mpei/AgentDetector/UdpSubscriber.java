@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-public class Subscriber {
+public class UdpSubscriber {
 
     static {
         NativeLibrary.addSearchPath("wpcap", "C:\\Windows\\System32\\Npcap");

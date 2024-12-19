@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class AgentDetectorImpl implements AgentDetector{
 
-    Subscriber sub;
+    UdpSubscriber sub;
     List<AID> activeAgents;
     boolean flag;
     private int current = 0;
@@ -21,8 +21,8 @@ public class AgentDetectorImpl implements AgentDetector{
 
         this.flag = flag;
         System.out.println(flag);
-        Publisher publisher = new Publisher();
-        publisher.create("127.0.0.1", 9000);
+        UdpPublisher udpPublisher = new UdpPublisher();
+        udpPublisher.create("127.0.0.1", 9000);
         Thread senderThread = new Thread(() -> {
             boolean flagg = true;
             while(flagg) {
@@ -32,7 +32,7 @@ public class AgentDetectorImpl implements AgentDetector{
                 if (current >4){
                     flagg = false;
                 }
-                publisher.send(agentData);
+                udpPublisher.send(agentData);
                 System.out.println(agentName + " публикует себя");
 
                 try {
@@ -48,7 +48,7 @@ public class AgentDetectorImpl implements AgentDetector{
 
     @Override
     public void startDiscovering(int port) {
-        sub = new Subscriber();
+        sub = new UdpSubscriber();
         sub.start(port);
     }
 
